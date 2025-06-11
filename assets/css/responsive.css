@@ -1,0 +1,241 @@
+/* Enhanced Responsive styles for premium layout */
+:root {
+    --primary-blue: #3268a4;
+    --secondary-blue: #007db8;
+    --black: #000000;
+    --white: #ffffff;
+    --light-gray: #f8f9fb;
+    --medium-gray: #e2e8f0;
+    --text-gray: #64748b;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Mobile First Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .top-navigation {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .book-navigation ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .chapter-header-section {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .chapter-header-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-image-section {
+        height: 40vh;
+    }
+
+    .chapter-introduction-section {
+        padding: 3rem 1rem;
+    }
+
+    .chapter-introduction-section p {
+        font-size: 1.1rem;
+    }
+
+    .main-content-section {
+        padding: 3rem 1rem;
+    }
+
+    .main-content-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .chapter-numbers {
+        gap: 0.75rem;
+    }
+
+    .chapter-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .nav-btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .contextual-cta h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .top-navigation {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .book-navigation ul {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .chapter-header-section {
+        padding: 4rem 1.5rem 3rem;
+    }
+
+    .chapter-header-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-image-section {
+        height: 50vh;
+    }
+
+    .chapter-navigation {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .chapter-numbers {
+        gap: 1rem;
+    }
+
+    .chapter-btn {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .top-navigation {
+        padding: 1.5rem 2rem;
+    }
+
+    .chapter-header-section {
+        padding: 5rem 2rem 3.5rem;
+    }
+
+    .hero-image-section {
+        height: 55vh;
+    }
+
+    .main-content-section {
+        max-width: 800px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero-image-section {
+        height: 60vh;
+    }
+
+    .main-content-section {
+        max-width: 900px;
+    }
+
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* High DPI displays */
+@media (min-resolution: 192dpi) {
+    .hero-image-section img,
+    .logo img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero-image-section {
+        height: 80vh;
+    }
+
+    .chapter-header-section {
+        padding: 2rem 2rem 1.5rem;
+    }
+
+    .chapter-header-section h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .top-navigation,
+    .chapter-navigation,
+    .chapter-explorer,
+    .contextual-cta {
+        display: none;
+    }
+
+    .hero-image-section {
+        height: auto;
+        page-break-inside: avoid;
+    }
+
+    .chapter-header-section,
+    .main-content-section {
+        page-break-inside: avoid;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    h1, h2, h3 {
+        color: var(--black) !important;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-gray: #94a3b8;
+        --light-gray: #1e293b;
+        --medium-gray: #334155;
+    }
+}
+
+/* Focus improvements for keyboard navigation */
+@media (any-hover: none) {
+    .chapter-btn:hover,
+    .nav-btn:hover,
+    .cta-button:hover {
+        transform: none;
+    }
+}
