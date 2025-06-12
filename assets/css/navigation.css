@@ -55,6 +55,120 @@
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
+/* Hero Navigation Arrows */
+.hero-navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hero-nav-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-nav-btn.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.hero-nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-nav-btn:hover::before {
+    transform: scale(1);
+}
+
+.hero-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.hero-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+    pointer-events: none;
+}
+
+/* Chapter indicator in hero */
+.chapter-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chapter-indicator-text {
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.chapter-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chapter-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.chapter-dot.active {
+    background: var(--white);
+    transform: scale(1.2);
+}
+
 /* Enhanced chapter navigation with dynamic titles */
 .chapter-navigation {
     margin-top: 0;
@@ -257,6 +371,25 @@
 
     .nav-links {
         gap: 1rem;
+    }
+
+    .hero-navigation {
+        padding: 0 1rem;
+    }
+
+    .hero-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .chapter-indicator {
+        bottom: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .chapter-indicator-text {
+        font-size: 0.8rem;
     }
 
     .chapter-navigation {

@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const chapterContent = document.getElementById('chapter-content');
     const prevButton = document.getElementById('prev-chapter');
     const nextButton = document.getElementById('next-chapter');
+    const heroPrevButton = document.getElementById('hero-prev');
+    const heroNextButton = document.getElementById('hero-next');
+    const chapterCounter = document.getElementById('chapter-counter');
 
     // Epic Smiles content for each chapter - Combined format
     const chapters = {
@@ -355,6 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             heroImage.alt = `${chapter.header} - Epic Smiles of Conroe`;
             chapterContent.innerHTML = chapter.content;
 
+            // Update chapter counter
+            chapterCounter.textContent = `Chapter ${chapterNumber} of 8`;
+
             // Update active chapter button
             document.querySelectorAll('.chapter-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -364,8 +370,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeBtn.classList.add('active');
             }
 
+            // Update chapter dots
+            document.querySelectorAll('.chapter-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            const activeDot = document.querySelector(`[data-dot="${chapterNumber}"]`);
+            if (activeDot) {
+                activeDot.classList.add('active');
+            }
+
             // Update navigation buttons with dynamic titles
             updateNavigationButtons(chapterNumber);
+            updateHeroNavigation(chapterNumber);
 
             // Smooth scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -416,7 +432,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listeners for navigation buttons - Only attach once!
+    function updateHeroNavigation(currentChapter) {
+        // Handle hero previous button
+        if (currentChapter <= 1) {
+            heroPrevButton.classList.add('hidden');
+        } else {
+            heroPrevButton.classList.remove('hidden');
+        }
+
+        // Handle hero next button
+        if (currentChapter >= 8) {
+            heroNextButton.classList.add('hidden');
+        } else {
+            heroNextButton.classList.remove('hidden');
+        }
+    }
+
+    // Event listeners for main navigation buttons
     prevButton.addEventListener('click', () => {
         if (currentChapter > 1) {
             loadChapter(currentChapter - 1);
@@ -429,10 +461,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Event listeners for hero navigation buttons
+    heroPrevButton.addEventListener('click', () => {
+        if (currentChapter > 1) {
+            loadChapter(currentChapter - 1);
+        }
+    });
+
+    heroNextButton.addEventListener('click', () => {
+        if (currentChapter < 8) {
+            loadChapter(currentChapter + 1);
+        }
+    });
+
     // Event listeners for chapter number buttons
     document.querySelectorAll('.chapter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const chapterNum = parseInt(btn.dataset.chapter);
+            loadChapter(chapterNum);
+        });
+    });
+
+    // Event listeners for chapter dots (clickable)
+    document.querySelectorAll('.chapter-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const chapterNum = parseInt(dot.dataset.dot);
             loadChapter(chapterNum);
         });
     });
